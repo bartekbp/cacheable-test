@@ -21,13 +21,13 @@ public class CacheableTestApplication implements CommandLineRunner {
   @Autowired
   private ItemService service;
 
-	public static void main(String[] args) {
-		SpringApplication.run(CacheableTestApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(CacheableTestApplication.class, args);
+  }
 
-	@Override
-	public void run(String... args) {
-	  final int itemId = 1;
+  @Override
+  public void run(String... args) {
+    final int itemId = 1;
     Item item = service.getItem(itemId);
     int itemValue = item.getValue();
     log.info("Read item value: {}", itemValue);
@@ -42,11 +42,9 @@ public class CacheableTestApplication implements CommandLineRunner {
     Assert.isTrue(itemValue == item.getValue(), "Item value changed externally");
   }
 
-
   @Bean
   CacheManager caffeineCacheManager() {
-	  return new TransactionAwareCacheManagerProxy(new CaffeineCacheManager());
+    return new TransactionAwareCacheManagerProxy(new CaffeineCacheManager());
   }
-
 
 }

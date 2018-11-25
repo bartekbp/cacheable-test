@@ -22,5 +22,4 @@ public class ItemService {
     itemDao.update(id, item);
     throw new RuntimeException("Rollback");
   }
-
 }
